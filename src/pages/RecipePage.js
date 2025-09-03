@@ -83,42 +83,48 @@ const RecipePage = () => {
           &larr; Back to Search
         </Link>
         
-        {/* Main content wrapper with a two-column grid on larger screens */}
-        <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        {/* Main content wrapper */}
+        <div className="bg-white p-6 md:p-8 rounded-lg shadow-lg">
           
-          {/* Column 1: Image */}
-          <div>
+          {/* Section 1: Title and Favorite Button */}
+          <div className="flex justify-between items-start mb-6 text-center">
+            <h1 className="text-4xl font-bold w-full">{recipe.strMeal}</h1>
+            <button onClick={handleFavoriteClick} className="p-2 rounded-full hover:bg-gray-200 transition-colors flex-shrink-0">
+              <span className={`text-3xl ${isRecipeFavorite ? 'text-red-500' : 'text-gray-400'}`}>
+                ❤️
+              </span>
+            </button>
+          </div>
+
+          {/* Section 2: Centered and Resized Image */}
+          <div className="flex justify-center mb-8">
             <img 
               src={recipe.strMealThumb} 
-              alt={recipe.strMeal} 
-              className="w-full h-auto rounded-lg shadow-md" 
+              alt={recipe.strMeal}
+              // UPDATE THIS LINE with max-h-96 and object-cover
+              className="w-full max-w-2xl max-h-96 object-cover rounded-lg shadow-md" 
             />
           </div>
 
-          {/* Column 2: Recipe Details */}
-          <div>
-            <div className="flex justify-between items-start mb-4">
-              <h1 className="text-4xl font-bold">{recipe.strMeal}</h1>
-              <button onClick={handleFavoriteClick} className="p-2 rounded-full hover:bg-gray-200 transition-colors flex-shrink-0">
-                <span className={`text-3xl ${isRecipeFavorite ? 'text-red-500' : 'text-gray-400'}`}>
-                  ❤️
-                </span>
-              </button>
-            </div>
+          {/* Section 3: Two-Column Grid for Ingredients & Instructions */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             
-            <div className="mt-6">
+            {/* Column 3a: Ingredients */}
+            <div>
               <h2 className="text-2xl font-semibold mb-3 border-b pb-2">Ingredients</h2>
               <ul className="list-disc list-inside space-y-2 mt-4 text-gray-700">
                 {ingredients.map((ing, index) => <li key={index}>{ing}</li>)}
               </ul>
             </div>
 
-            <div className="mt-8">
+            {/* Column 3b: Instructions */}
+            <div>
               <h2 className="text-2xl font-semibold mb-3 border-b pb-2">Instructions</h2>
               <p className="whitespace-pre-wrap leading-relaxed mt-4 text-gray-700">
                 {recipe.strInstructions}
               </p>
             </div>
+            
           </div>
         </div>
       </main>
