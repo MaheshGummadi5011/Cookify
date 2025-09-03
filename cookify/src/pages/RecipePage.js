@@ -72,7 +72,7 @@ const RecipePage = () => {
     return <p>Recipe not found.</p>;
   }
 
-  return (
+ return (
     <div className="min-h-screen bg-gray-100">
       <Header />
       <main className="container mx-auto p-4 md:p-8">
